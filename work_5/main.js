@@ -4,11 +4,12 @@ import fs from 'fs/promises';
 const server = http.createServer((req, res) => {
   //   console.log(req.url, 'url');
 
-  if (req.url === '/random') {
-    const randomNumber = Math.floor(Math.random() * 100) + 1;
+  if (req.url === '/current-time') {
+    const currentTime = new Date().toISOString();
 
-    res.setHeader('Content-type', 'text/html');
-    res.write(`<h1>Home Page: Random Number is ${randomNumber}</h1>`);
+    res.setHeader('Content-Type', 'application/json');
+
+    res.write(JSON.stringify({ currentTime }));
     res.end();
   }
   res.end('hello world');
